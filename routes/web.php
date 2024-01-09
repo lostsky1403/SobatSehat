@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArtikelController;
@@ -31,7 +32,7 @@ Route::get('/index', [IndexController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 // route artikel
 Route::get('/artikel', [App\Http\Controllers\ArtikelController::class, 'index'])->name('artikel');
@@ -43,9 +44,7 @@ Route::get('/kegiatan', [App\Http\Controllers\KegiatanController::class, 'index'
 Route::get('/lokasi', [App\Http\Controllers\LokasiController::class, 'index'])->name('lokasi');
 
 //route form
-Route::get('/form-jadwal', [App\Http\Controllers\FormController::class, 'index'])->name('form-jadwal');
+Route::get('/form-jadwal', [App\Http\Controllers\FormController::class, 'index'])->name('form-jadwal')->middleware('auth');
 
 // route form sukses
 Route::get('/sukses', [App\Http\Controllers\SuksesController::class, 'index'])->name('sukses');
-
-
